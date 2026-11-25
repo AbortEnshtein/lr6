@@ -1,4 +1,4 @@
-import { db, storageKind } from '@/lib/store';
+import { db, storageKind, storageSource } from '@/lib/store';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,5 +11,5 @@ export async function GET() {
     database = 'error';
   }
   const ok = database === 'ok';
-  return Response.json({ ok, storage: storageKind, database }, { status: ok ? 200 : 503 });
+  return Response.json({ ok, storage: storageKind, source: storageSource, database }, { status: ok ? 200 : 503 });
 }
