@@ -1,0 +1,31 @@
+{
+  "name": "vizitka-cicd",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:static": "NEXT_PUBLIC_STATIC_EXPORT=1 next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:css": "stylelint \"app/**/*.css\"",
+    "test": "node --test tests/*.test.js",
+    "hash-password": "node scripts/hash-password.mjs"
+  },
+  "engines": {
+    "node": ">=20.9"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.41.1",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.6",
+    "stylelint": "^18.1.0",
+    "stylelint-config-standard": "^41.1.0"
+  }
+}

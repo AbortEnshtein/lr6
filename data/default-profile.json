@@ -1,0 +1,47 @@
+{
+  "name": "Имя Фамилия",
+  "title": "Веб-разработчик",
+  "location": "Санкт-Петербург",
+  "about": "Здесь будет пара предложений о вас. Отредактируйте этот текст в редакторе: /admin → вход по логину и паролю → «Профиль».",
+  "avatarUrl": "",
+  "skills": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Next.js",
+    "Docker",
+    "GitHub Actions"
+  ],
+  "contacts": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/"
+    },
+    {
+      "label": "Telegram",
+      "url": "https://t.me/"
+    },
+    {
+      "label": "E-mail",
+      "url": "mailto:you@example.com"
+    }
+  ],
+  "projects": [
+    {
+      "title": "htmx",
+      "description": "Пример проекта: сайт-документация библиотеки. Замените на свои проекты в редакторе.",
+      "url": "https://htmx.org/"
+    },
+    {
+      "title": "Википедия",
+      "description": "Пример встраивания крупного сайта через iframe.",
+      "url": "https://www.wikipedia.org/"
+    },
+    {
+      "title": "Example Domain",
+      "description": "Простейшая статическая страница.",
+      "url": "https://example.com/"
+    }
+  ]
+}

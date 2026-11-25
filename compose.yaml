@@ -1,0 +1,48 @@
+# Локальный запуск полной версии сайта: make up → http://localhost:3000
+services:
+  app:
+    image: ${APP_IMAGE:-vizitka:local}
+    build:
+      context: .
+      args:
+        COMMIT_SHA: ${COMMIT_SHA:-}
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # Тот же REST-протокол, что у Upstash на Vercel, — код приложения не отличается
+      KV_REST_API_URL: http://redis-http:80
+      KV_REST_API_TOKEN: ${LOCAL_REDIS_TOKEN:-local-dev-token}
+    depends_on:
+      redis-http:
+        condition: service_started
+    restart: unless-stopped
+
+  # Upstash-совместимый HTTP-прокси перед обычным Redis
+  redis-http:
+    image: hiett/serverless-redis-http:latest
+    environment:
+      SRH_MODE: env
+      SRH_TOKEN: ${LOCAL_REDIS_TOKEN:-local-dev-token}
+      SRH_CONNECTION_STRING: redis://redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  redis-data:
