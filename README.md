@@ -1,6 +1,6 @@
 # Сайт-визитка с CI/CD
 
-![CI/CD](https://github.com/USERNAME/REPO/actions/workflows/deploy.yml/badge.svg)
+![CI/CD](https://github.com/AbortEnshtein/lr6/actions/workflows/deploy.yml/badge.svg)
 
 Лабораторная работа №6 «Автоматизация развёртывания проекта с помощью GitHub Actions».
 

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { hashPassword, safeEqual, signSession, verifyPassword, verifySession } from '../lib/crypto.js';
+import { authFingerprint, hashPassword, safeEqual, signSession, verifyPassword, verifySession } from '../lib/crypto.js';
 
 const SECRET = 'x'.repeat(64);
 
@@ -39,4 +39,11 @@ test('подделанная, чужая и просроченная сесси�
   assert.equal(verifySession(token, 'y'.repeat(64)), null);
   assert.equal(verifySession(signSession({ u: 'admin', exp: Date.now() - 1 }, SECRET), SECRET), null);
   assert.equal(verifySession(undefined, SECRET), null);
+});
+
+test('отпечаток настроек входа: стабильный, короткий, не зависит от пробелов по краям', () => {
+  const fp = authFingerprint('admin', 'scrypt:abc');
+  assert.match(fp, /^[0-9a-f]{8}$/);
+  assert.equal(authFingerprint(' admin ', 'scrypt:abc\n'), fp);
+  assert.notEqual(authFingerprint('admin', 'scrypt:abd'), fp);
 });
