@@ -293,6 +293,17 @@ fieldset:disabled .button {
   font-size: clamp(2rem, 5vw, 2.8rem);
 }
 
+.update-mark {
+  display: inline-block;
+  margin: 0.6rem 0 0;
+  padding: 0.25rem 0.8rem;
+  border: 2px solid var(--ok);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ok) 15%, transparent);
+  color: var(--ok);
+  font-weight: 700;
+}
+
 .hero-meta {
   margin: 0.35rem 0 0;
   color: var(--muted);

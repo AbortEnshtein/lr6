@@ -76,6 +76,7 @@ export default async function HomePage() {
           </div>
           <div className="hero-body">
             <h1>{profile.name}</h1>
+            <p className="update-mark">Обновлено через CI/CD ✓</p>
             {(profile.title || profile.location) && (
               <p className="hero-meta">{[profile.title, profile.location].filter(Boolean).join(' · ')}</p>
             )}
